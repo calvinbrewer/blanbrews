@@ -64,15 +64,15 @@ export function Accommodation() {
             </h3>
             <div className="space-y-4 text-muted-foreground">
               <p className="leading-relaxed">
-                <strong>Payment:</strong> We're collecting accommodation
+                <strong>Payment:</strong> We&apos;re collecting accommodation
                 payments in advance to simplify the process for everyone. This
                 helps us manage the venue booking and ensures a smooth
                 experience for all our guests.
               </p>
               <p className="leading-relaxed">
-                <strong>Transportation:</strong> We're arranging transfers from
-                the train station to the venue for check-in and check-out days.
-                More details will be provided with your invitation.
+                <strong>Transportation:</strong> We&apos;re arranging transfers
+                from the train station to the venue for check-in and check-out
+                days. More details will be provided with your invitation.
               </p>
               <p className="leading-relaxed">
                 <strong>Tourist Tax:</strong> Please note that there is a small
