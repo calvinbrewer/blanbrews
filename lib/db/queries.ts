@@ -1,6 +1,6 @@
 import { db } from './index'
 import { guests, plusOneRelationships } from './schema'
-import { eq, and, sql, inArray } from 'drizzle-orm'
+import { eq, and, sql, inArray, ilike } from 'drizzle-orm'
 import type { Guest, GuestWithPlusOnes, CreateGuestRequest } from '../types'
 
 /**
@@ -14,10 +14,7 @@ export async function findGuestByName(
     .select()
     .from(guests)
     .where(
-      and(
-        sql`LOWER(${guests.firstName}) = LOWER(${firstName})`,
-        sql`LOWER(${guests.lastName}) = LOWER(${lastName})`,
-      ),
+      and(ilike(guests.firstName, firstName), ilike(guests.lastName, lastName)),
     )
     .limit(1)
 
@@ -53,9 +50,8 @@ export async function getGuestWithPlusOnes(
     .limit(1)
 
   // If they are a plus-one, use their primary guest instead
-  const primaryGuestId = isPlusOneOf.length > 0 
-    ? isPlusOneOf[0].primaryGuestId 
-    : guestId
+  const primaryGuestId =
+    isPlusOneOf.length > 0 ? isPlusOneOf[0].primaryGuestId : guestId
 
   // Get the primary guest data
   const primaryGuest = await db

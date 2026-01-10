@@ -26,7 +26,9 @@ export function RSVP() {
     lastName: '',
   })
   const [foundGuest, setFoundGuest] = useState<GuestWithPlusOnes | null>(null)
-  const [guestResponses, setGuestResponses] = useState<Record<string, GuestRSVPData>>({})
+  const [guestResponses, setGuestResponses] = useState<
+    Record<string, GuestRSVPData>
+  >({})
   const [wantsOwnHousing, setWantsOwnHousing] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -40,7 +42,7 @@ export function RSVP() {
   const handleGuestResponseChange = (
     guestId: string,
     field: 'isAttending' | 'dietaryRestrictions',
-    value: string
+    value: string,
   ) => {
     setGuestResponses((prev) => ({
       ...prev,
@@ -79,15 +81,15 @@ export function RSVP() {
       // Initialize responses for all guests
       const allGuests = [guest, ...guest.plusOnes]
       const initialResponses: Record<string, GuestRSVPData> = {}
-      
-      allGuests.forEach((g) => {
+
+      for (const g of allGuests) {
         initialResponses[g.id] = {
           guestId: g.id,
           isAttending: g.hasRsvped ? (g.isAttending ? 'yes' : 'no') : '',
           dietaryRestrictions: g.dietaryRestrictions || '',
         }
-      })
-      
+      }
+
       setGuestResponses(initialResponses)
       setWantsOwnHousing(guest.wantsOwnHousing)
     } catch {
@@ -105,7 +107,7 @@ export function RSVP() {
     // Validate that all guests have responded
     const allGuests = [foundGuest, ...foundGuest.plusOnes]
     const allResponded = allGuests.every(
-      (g) => guestResponses[g.id]?.isAttending !== ''
+      (g) => guestResponses[g.id]?.isAttending !== '',
     )
 
     if (!allResponded) {
@@ -326,11 +328,12 @@ export function RSVP() {
                               <h3 className="font-semibold text-lg text-foreground">
                                 {guest.firstName} {guest.lastName}
                               </h3>
-                              {index === 0 && foundGuest.plusOnes.length > 0 && (
-                                <p className="text-xs text-muted-foreground">
-                                  Primary Guest
-                                </p>
-                              )}
+                              {index === 0 &&
+                                foundGuest.plusOnes.length > 0 && (
+                                  <p className="text-xs text-muted-foreground">
+                                    Primary Guest
+                                  </p>
+                                )}
                               {index > 0 && (
                                 <p className="text-xs text-muted-foreground">
                                   Plus One
@@ -345,12 +348,14 @@ export function RSVP() {
                               Will {guest.firstName} be attending? *
                             </Label>
                             <RadioGroup
-                              value={guestResponses[guest.id]?.isAttending || ''}
+                              value={
+                                guestResponses[guest.id]?.isAttending || ''
+                              }
                               onValueChange={(value) =>
                                 handleGuestResponseChange(
                                   guest.id,
                                   'isAttending',
-                                  value
+                                  value,
                                 )
                               }
                               className="space-y-2"
@@ -397,14 +402,14 @@ export function RSVP() {
                               <Textarea
                                 id={`dietary-${guest.id}`}
                                 value={
-                                  guestResponses[guest.id]?.dietaryRestrictions ||
-                                  ''
+                                  guestResponses[guest.id]
+                                    ?.dietaryRestrictions || ''
                                 }
                                 onChange={(e) =>
                                   handleGuestResponseChange(
                                     guest.id,
                                     'dietaryRestrictions',
-                                    e.target.value
+                                    e.target.value,
                                   )
                                 }
                                 placeholder={`Any dietary needs for ${guest.firstName}...`}

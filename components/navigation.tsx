@@ -25,10 +25,10 @@ export function Navigation() {
   }
 
   return (
-    <nav 
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm' 
+        isScrolled
+          ? 'bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm'
           : 'bg-transparent'
       }`}
     >
@@ -40,7 +40,9 @@ export function Navigation() {
               type="button"
               onClick={() => scrollToSection('events')}
               className={`text-sm font-medium transition-colors hover:text-accent ${
-                isScrolled ? 'text-foreground' : 'text-white/90 hover:text-white'
+                isScrolled
+                  ? 'text-foreground'
+                  : 'text-white/90 hover:text-white'
               }`}
             >
               Events
@@ -49,12 +51,14 @@ export function Navigation() {
               type="button"
               onClick={() => scrollToSection('accommodation')}
               className={`text-sm font-medium transition-colors hover:text-accent ${
-                isScrolled ? 'text-foreground' : 'text-white/90 hover:text-white'
+                isScrolled
+                  ? 'text-foreground'
+                  : 'text-white/90 hover:text-white'
               }`}
             >
               Accommodation
             </button>
-            
+
             {/* Center Logo/Names */}
             <button
               type="button"
@@ -65,15 +69,28 @@ export function Navigation() {
             >
               T & C
             </button>
-            
+
             <button
               type="button"
               onClick={() => scrollToSection('rsvp')}
               className={`text-sm font-medium transition-colors hover:text-accent ${
-                isScrolled ? 'text-foreground' : 'text-white/90 hover:text-white'
+                isScrolled
+                  ? 'text-foreground'
+                  : 'text-white/90 hover:text-white'
               }`}
             >
               RSVP
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollToSection('faq')}
+              className={`text-sm font-medium transition-colors hover:text-accent ${
+                isScrolled
+                  ? 'text-foreground'
+                  : 'text-white/90 hover:text-white'
+              }`}
+            >
+              FAQ
             </button>
           </div>
 
@@ -113,6 +130,13 @@ export function Navigation() {
                 className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium"
               >
                 RSVP
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollToSection('faq')}
+                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium"
+              >
+                FAQ
               </button>
             </div>
           </div>
