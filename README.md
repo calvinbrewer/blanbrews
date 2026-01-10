@@ -1,16 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) wedding website with a full RSVP management system powered by Drizzle ORM and Supabase.
+
+## 🚀 Quick Start
+
+### 1. Setup Database
+See [SETUP_CHECKLIST.md](SETUP_CHECKLIST.md) for complete setup instructions.
+
+**Quick steps:**
+1. Add Supabase credentials to `.env.local`
+2. Run `bun run db:push` to create tables
+3. Run `bun run dev` to start dev server
+4. Visit `http://localhost:3000/admin` to add guests
+
+### 2. Admin Access
+The admin interface is protected with HTTP Basic Authentication.
+
+**Default credentials** (change these!):
+- Username: `admin`
+- Password: `changeme`
+
+Configure in `.env.local`:
+```env
+ADMIN_USERNAME=your_username
+ADMIN_PASSWORD=your_secure_password
+```
+
+## ✨ Features
+
+### Guest-Facing
+- Name-based guest lookup (case-insensitive)
+- Automatic plus-one detection and display
+- RSVP with attendance selection
+- Dietary restrictions input
+- Housing preference opt-out
+
+### Admin Dashboard
+- View all guests with statistics
+- Add/edit/delete guests
+- Link plus-one relationships
+- Search and filter guests
+- Real-time RSVP status tracking
+- **Protected with HTTP Basic Auth**
+
+## 🛠️ Available Scripts
+
+```bash
+bun run dev          # Start development server
+bun run build        # Build for production
+bun run start        # Start production server
+bun run lint         # Run linter
+
+# Database commands
+bun run db:push      # Push schema to database
+bun run db:studio    # Open database GUI
+bun run db:seed      # Add sample test data
+```
+
+## 🔒 Security
+
+All admin routes (`/admin` and `/api/admin/*`) are protected with HTTP Basic Authentication:
+- Credentials stored in environment variables
+- Browser-native login prompt
+- Simple and effective protection
+
+⚠️ **Important**: Change default credentials before deploying!
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
 bun dev
 ```
 

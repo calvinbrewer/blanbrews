@@ -4,40 +4,40 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color palette to match fall wedding aesthetic */
-  --background: oklch(1 0 0); /* Cream white */
-  --foreground: oklch(0.3 0.05 30); /* Deep burgundy */
-  --card: oklch(0.98 0.02 60); /* Ivory */
-  --card-foreground: oklch(0.65 0.15 75); /* Golden orange #BE7F0B */
-  --popover: oklch(1 0 0); /* Cream white */
-  --popover-foreground: oklch(0.3 0.05 30); /* Deep burgundy */
-  --primary: oklch(0.65 0.15 75); /* Golden orange #BE7F0B */
-  --primary-foreground: oklch(1 0 0); /* Cream white */
-  --secondary: oklch(0.75 0.12 75); /* Golden accent */
-  --secondary-foreground: oklch(0.3 0.05 30); /* Deep burgundy */
-  --muted: oklch(0.98 0.02 60); /* Ivory */
-  --muted-foreground: oklch(0.3 0.05 30); /* Deep burgundy */
-  --accent: oklch(0.75 0.12 75); /* Golden accent */
-  --accent-foreground: oklch(0.3 0.05 30); /* Deep burgundy */
+  /* Refined elegant wedding palette */
+  --background: oklch(0.99 0.005 85); /* Warm off-white */
+  --foreground: oklch(0.25 0.02 35); /* Deep warm charcoal */
+  --card: oklch(1 0 0); /* Pure white for elevated cards */
+  --card-foreground: oklch(0.3 0.02 30); /* Elegant dark text */
+  --popover: oklch(1 0 0); 
+  --popover-foreground: oklch(0.25 0.02 35);
+  --primary: oklch(0.6 0.12 65); /* Refined golden amber */
+  --primary-foreground: oklch(0.99 0.005 85); /* Warm white */
+  --secondary: oklch(0.72 0.08 70); /* Soft champagne gold */
+  --secondary-foreground: oklch(0.25 0.02 35);
+  --muted: oklch(0.96 0.01 80); /* Subtle warm gray */
+  --muted-foreground: oklch(0.5 0.015 35); /* Mid-tone gray */
+  --accent: oklch(0.68 0.10 68); /* Elegant gold accent */
+  --accent-foreground: oklch(0.99 0.005 85);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0.01 45); /* Light warm gray */
-  --input: oklch(0.98 0.02 60); /* Ivory */
-  --ring: oklch(0.65 0.15 75 / 0.5); /* Golden orange with opacity */
-  --chart-1: oklch(0.65 0.15 75); /* Golden orange #BE7F0B */
-  --chart-2: oklch(0.75 0.12 75); /* Golden accent */
-  --chart-3: oklch(0.3 0.05 30); /* Deep burgundy */
-  --chart-4: oklch(0.98 0.02 60); /* Ivory */
-  --chart-5: oklch(1 0 0); /* Cream white */
-  --radius: 0.5rem;
-  --sidebar: oklch(0.98 0.02 60); /* Ivory */
-  --sidebar-foreground: oklch(0.3 0.05 30); /* Deep burgundy */
-  --sidebar-primary: oklch(0.65 0.15 75); /* Golden orange #BE7F0B */
-  --sidebar-primary-foreground: oklch(1 0 0); /* Cream white */
-  --sidebar-accent: oklch(0.75 0.12 75); /* Golden accent */
-  --sidebar-accent-foreground: oklch(0.3 0.05 30); /* Deep burgundy */
-  --sidebar-border: oklch(0.9 0.01 45); /* Light warm gray */
-  --sidebar-ring: oklch(0.65 0.15 75 / 0.5); /* Golden orange with opacity */
+  --border: oklch(0.92 0.008 75); /* Delicate warm border */
+  --input: oklch(0.98 0.005 85); /* Soft input background */
+  --ring: oklch(0.6 0.12 65 / 0.3); /* Subtle focus ring */
+  --chart-1: oklch(0.6 0.12 65);
+  --chart-2: oklch(0.72 0.08 70);
+  --chart-3: oklch(0.25 0.02 35);
+  --chart-4: oklch(0.96 0.01 80);
+  --chart-5: oklch(0.99 0.005 85);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.99 0.005 85);
+  --sidebar-foreground: oklch(0.25 0.02 35);
+  --sidebar-primary: oklch(0.6 0.12 65);
+  --sidebar-primary-foreground: oklch(0.99 0.005 85);
+  --sidebar-accent: oklch(0.72 0.08 70);
+  --sidebar-accent-foreground: oklch(0.25 0.02 35);
+  --sidebar-border: oklch(0.92 0.008 75);
+  --sidebar-ring: oklch(0.6 0.12 65 / 0.3);
 }
 
 .dark {
@@ -123,6 +123,77 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+  }
+  
+  /* Elegant typography improvements */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom utility classes for refined design */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-fade {
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      oklch(0.99 0.005 85 / 0.8),
+      oklch(0.99 0.005 85)
+    );
+  }
+  
+  /* Elegant animations */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .animate-in {
+    animation-fill-mode: both;
+  }
+  
+  .fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+  
+  .slide-in-from-bottom-4 {
+    animation: slide-in-from-bottom 0.6s ease-out;
+  }
+  
+  .duration-1000 {
+    animation-duration: 1s;
+  }
+  
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+  
+  .delay-300 {
+    animation-delay: 0.3s;
   }
 }

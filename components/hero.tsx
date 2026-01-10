@@ -16,42 +16,49 @@ export function Hero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/cj-tori-hero-1.jpg')`,
+          backgroundImage: `url('/cj-tori-hero-3.jpg')`,
         }}
       >
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
-        <div className="mb-8">
-          <p className="text-lg md:text-xl font-serif italic mb-4 text-cream/90">
+      <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
+        <div className="mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <p className="text-lg md:text-xl font-serif italic mb-6 text-cream/95 tracking-wide">
             We invite you to celebrate with us
           </p>
-          <h1 className="font-serif text-7xl md:text-9xl font-light mb-4 text-balance tracking-wide">
+          <h1 className="font-serif text-7xl md:text-9xl lg:text-[10rem] font-light mb-6 text-balance tracking-wide">
             Tori & CJ
           </h1>
-          <div className="w-24 h-px bg-secondary mx-auto mb-6" />
+          <div className="w-24 h-px bg-secondary/80 mx-auto mb-8" />
         </div>
 
-        <div className="text-xl md:text-2xl mb-10 text-balance font-serif">
-          <p className="mb-3 text-cream/95">October 1st - 4th, 2026</p>
-          <p className="text-lg text-cream/90">Tuscany, Italy</p>
+        <div className="text-xl md:text-2xl mb-12 text-balance font-serif animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
+          <p className="mb-4 text-cream/95 font-light tracking-wide">
+            October 1st - 4th, 2026
+          </p>
+          <p className="text-lg md:text-xl text-cream/90 font-light italic">
+            Borgo Siliano, Tuscany
+          </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
           <Button
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-4 text-lg tracking-wide"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground px-12 h-14 text-base font-medium tracking-wider shadow-lg hover:shadow-xl transition-all duration-300"
             onClick={scrollToRSVP}
           >
             RSVP
           </Button>
-          <p className="text-sm text-cream/80 font-light">
-            We can&apos;t wait to celebrate with you!
+          <p className="text-sm md:text-base text-cream/85 font-light italic">
+            We can&apos;t wait to celebrate with you in Tuscany
           </p>
         </div>
       </div>
+
+      {/* Subtle gradient overlay at bottom for smooth transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background/10 to-transparent" />
     </section>
   )
 }
