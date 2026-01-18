@@ -39,7 +39,7 @@ export function Navigation() {
             <button
               type="button"
               onClick={() => scrollToSection('events')}
-              className={`text-sm font-medium transition-colors hover:text-accent ${
+              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
                 isScrolled
                   ? 'text-foreground'
                   : 'text-white/90 hover:text-white'
@@ -50,7 +50,7 @@ export function Navigation() {
             <button
               type="button"
               onClick={() => scrollToSection('accommodation')}
-              className={`text-sm font-medium transition-colors hover:text-accent ${
+              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
                 isScrolled
                   ? 'text-foreground'
                   : 'text-white/90 hover:text-white'
@@ -63,7 +63,7 @@ export function Navigation() {
             <button
               type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className={`font-serif text-xl font-light transition-colors ${
+              className={`font-serif text-xl font-light transition-colors cursor-pointer ${
                 isScrolled ? 'text-foreground' : 'text-white'
               }`}
             >
@@ -73,7 +73,7 @@ export function Navigation() {
             <button
               type="button"
               onClick={() => scrollToSection('rsvp')}
-              className={`text-sm font-medium transition-colors hover:text-accent ${
+              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
                 isScrolled
                   ? 'text-foreground'
                   : 'text-white/90 hover:text-white'
@@ -83,8 +83,19 @@ export function Navigation() {
             </button>
             <button
               type="button"
+              onClick={() => scrollToSection('gifts')}
+              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
+                isScrolled
+                  ? 'text-foreground'
+                  : 'text-white/90 hover:text-white'
+              }`}
+            >
+              Registry
+            </button>
+            <button
+              type="button"
               onClick={() => scrollToSection('faq')}
-              className={`text-sm font-medium transition-colors hover:text-accent ${
+              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
                 isScrolled
                   ? 'text-foreground'
                   : 'text-white/90 hover:text-white'
@@ -113,28 +124,35 @@ export function Navigation() {
               <button
                 type="button"
                 onClick={() => scrollToSection('events')}
-                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium"
+                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
               >
                 Events
               </button>
               <button
                 type="button"
                 onClick={() => scrollToSection('accommodation')}
-                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium"
+                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
               >
                 Accommodation
               </button>
               <button
                 type="button"
                 onClick={() => scrollToSection('rsvp')}
-                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium"
+                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
               >
                 RSVP
               </button>
               <button
                 type="button"
+                onClick={() => scrollToSection('gifts')}
+                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
+              >
+                Registry
+              </button>
+              <button
+                type="button"
                 onClick={() => scrollToSection('faq')}
-                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium"
+                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
               >
                 FAQ
               </button>

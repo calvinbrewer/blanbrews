@@ -1,45 +1,64 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Calendar, MapPin, Clock } from 'lucide-react'
+import { Calendar, MapPin, Clock, Shirt } from 'lucide-react'
 
 export function EventDetails() {
   const events = [
     {
       title: 'Pizza Party',
       date: 'October 1, 2026',
-      time: '7:00 PM',
-      location: 'Borgo Siliano, Tuscany',
-      description:
-        'Join us for a casual pizza party as we kick off our wedding weekend celebration.',
+      time: '5:30 PM',
+      location: 'Borgo Siliano',
+      dressCode: 'Dressy-casual',
+      description: 'A casual pizza party to kick off our wedding weekend.',
     },
     {
       title: 'Wedding Ceremony & Reception',
       date: 'October 2, 2026',
-      time: '4:00 PM',
-      location: 'Borgo Siliano, Tuscany',
+      time: '3:00 PM',
+      location: 'Borgo Siliano',
+      dressCode: 'Cocktail Attire (jacket and tie encouraged)',
       description:
-        'Our intimate ceremony surrounded by the rolling hills and vineyards of Tuscany, followed by dinner, dancing, and unforgettable memories.',
+        'An intimate ceremony surrounded by the rolling hills and vineyards of Tuscany, followed by dinner and dancing.',
       featured: true,
     },
     {
-      title: 'Brunch & Farewell Dinner',
+      title: 'After Party',
+      date: 'October 2, 2026',
+      time: '11:00 PM',
+      location: 'Borgo Siliano',
+      dressCode: 'Casual',
+      description: 'An after party to continue the shenanigans.',
+    },
+    {
+      title: 'Sunday Brunch',
       date: 'October 3, 2026',
-      time: '11:00 AM - 8:00 PM',
-      location: 'Borgo Siliano Vineyards',
-      description:
-        'A relaxed brunch followed by a special farewell dinner in the vineyards with one long table for all our guests.',
+      time: '10:00 AM',
+      location: 'Borgo Siliano',
+      dressCode:
+        'Relaxed (we can almost promise you the bride will be in sweatpants)',
+      description: 'A relaxed brunch with a little hair of the dog.',
+    },
+    {
+      title: 'Farewell Dinner',
+      date: 'October 3, 2026',
+      time: '5:30 PM',
+      location: 'Borgo Siliano',
+      dressCode: 'Semi-formal (did someone say linens?!)',
+      description: 'A special farewell dinner in the vineyards.',
     },
     {
       title: 'Departures',
       date: 'October 4, 2026',
-      time: 'Check-out',
-      location: 'Various',
+      time: '11:00 AM',
+      location: 'Home',
+      dressCode: null,
       description:
-        'Safe travels home! We hope you had an unforgettable time celebrating with us in Tuscany.',
+        'Safe travels home! We hope you had an unforgettable time celebrating with us.',
     },
   ]
 
   return (
-    <section id="events" className="py-24 md:py-32 px-4 bg-muted/30">
+    <section id="events" className="py-24 px-4 bg-muted/30">
       <div className="container mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-20">
@@ -48,7 +67,7 @@ export function EventDetails() {
           </h2>
           <div className="w-20 h-0.5 bg-accent/40 mx-auto mb-6" />
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            A weekend of celebration in the heart of Tuscany
+            Vocabolo Sigliano 47, Città della Pieve, IT 06062
           </p>
         </div>
 
@@ -58,10 +77,10 @@ export function EventDetails() {
             <Card
               key={index}
               className={`group bg-card border hover:shadow-xl transition-all duration-300 overflow-hidden ${
-                  event.featured 
-                    ? 'border-accent/40 shadow-md' 
-                    : 'border-border/50 hover:border-accent/30'
-                }`}
+                event.featured
+                  ? 'border-accent/40 shadow-md'
+                  : 'border-border/50 hover:border-accent/30'
+              }`}
             >
               <CardHeader className="pb-4">
                 <CardTitle className="font-serif text-2xl md:text-3xl font-normal text-foreground tracking-tight">
@@ -81,10 +100,22 @@ export function EventDetails() {
                   </div>
                   <div className="flex items-center gap-3 text-muted-foreground group-hover:text-foreground transition-colors">
                     <MapPin className="h-4 w-4 text-accent flex-shrink-0" />
-                    <span className="text-sm md:text-base">{event.location}</span>
+                    <span className="text-sm md:text-base">
+                      {event.location}
+                    </span>
                   </div>
+                  {event.dressCode && (
+                    <div className="flex items-center gap-3 text-muted-foreground group-hover:text-foreground transition-colors">
+                      <Shirt className="h-4 w-4 text-accent flex-shrink-0" />
+                      <span className="text-sm md:text-base">
+                        <strong className="text-foreground font-medium">
+                          {event.dressCode}
+                        </strong>
+                      </span>
+                    </div>
+                  )}
                 </div>
-                
+
                 {/* Description */}
                 <div className="pt-3 border-t border-border/30">
                   <p className="text-muted-foreground leading-relaxed text-sm md:text-base">

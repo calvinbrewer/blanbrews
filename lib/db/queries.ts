@@ -197,7 +197,7 @@ export async function deleteGuest(guestId: string): Promise<boolean> {
  */
 export async function getAllGuests(
   page = 1,
-  pageSize = 50,
+  pageSize = 200,
 ): Promise<{ guests: Guest[]; total: number }> {
   const offset = (page - 1) * pageSize
 

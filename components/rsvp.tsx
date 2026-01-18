@@ -173,7 +173,7 @@ export function RSVP() {
   }
 
   return (
-    <section id="rsvp" className="py-24 md:py-32 px-4 bg-muted/30">
+    <section id="rsvp" className="py-24  px-4 bg-muted/30">
       <div className="container mx-auto max-w-3xl">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -183,7 +183,7 @@ export function RSVP() {
           <div className="w-20 h-0.5 bg-accent/40 mx-auto mb-6" />
           <p className="text-muted-foreground text-lg leading-relaxed">
             Please respond by{' '}
-            <strong className="text-foreground">August 1, 2026</strong>
+            <strong className="text-foreground">June 1st, 2026</strong>
           </p>
         </div>
 
@@ -437,7 +437,10 @@ export function RSVP() {
                         htmlFor="housing"
                         className="cursor-pointer font-normal flex-1"
                       >
-                        We will arrange our own accommodation
+                        By selecting this option, you are{' '}
+                        <strong>opting out</strong> of the accommodation
+                        reserved for you and will book your accommodation
+                        separately.
                       </Label>
                     </div>
                   </div>

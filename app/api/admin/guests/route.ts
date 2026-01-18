@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
     const page = Number.parseInt(searchParams.get('page') || '1', 10)
-    const pageSize = Number.parseInt(searchParams.get('pageSize') || '50', 10)
+    const pageSize = Number.parseInt(searchParams.get('pageSize') || '200', 10)
 
     const result = await getAllGuests(page, pageSize)
 

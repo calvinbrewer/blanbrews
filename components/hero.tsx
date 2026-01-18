@@ -16,7 +16,7 @@ export function Hero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/cj-tori-hero-3.jpg')`,
+          backgroundImage: `url('/cj-tori.png')`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50" />
@@ -51,9 +51,6 @@ export function Hero() {
           >
             RSVP
           </Button>
-          <p className="text-sm md:text-base text-cream/85 font-light italic">
-            We can&apos;t wait to celebrate with you in Tuscany
-          </p>
         </div>
       </div>
 

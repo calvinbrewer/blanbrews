@@ -3,6 +3,7 @@ import { Hero } from '@/components/hero'
 import { EventDetails } from '@/components/event-details'
 import { Accommodation } from '@/components/accommodation'
 import { RSVP } from '@/components/rsvp'
+import { Gifts } from '@/components/gifts'
 import { FAQ } from '@/components/faq'
 import { Footer } from '@/components/footer'
 
@@ -14,6 +15,7 @@ export default function Home() {
       <EventDetails />
       <Accommodation />
       <RSVP />
+      <Gifts />
       <FAQ />
       <Footer />
     </main>

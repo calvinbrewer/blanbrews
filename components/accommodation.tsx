@@ -1,9 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Home, MapPin, Euro, Users, Info, DollarSign } from 'lucide-react'
+import { Home, MapPin, Users, DollarSign, QrCode } from 'lucide-react'
+import Image from 'next/image'
 
 export function Accommodation() {
   return (
-    <section id="accommodation" className="py-24 md:py-32 px-4 bg-background">
+    <section id="accommodation" className="py-24  px-4 bg-background">
       <div className="container mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-20">
@@ -11,9 +12,6 @@ export function Accommodation() {
             Accommodation
           </h2>
           <div className="w-20 h-0.5 bg-accent/40 mx-auto mb-6" />
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Comfortable stays in the heart of Tuscany
-          </p>
         </div>
 
         {/* Main Accommodation Cards */}
@@ -28,25 +26,24 @@ export function Accommodation() {
             <CardContent className="space-y-6">
               <p className="text-muted-foreground leading-relaxed">
                 We have reserved rooms at{' '}
-                <strong className="text-foreground">Borgo Siliano</strong> for
-                our wedding guests. The venue offers beautiful accommodations
-                with all meals and most importantly drinks included.
+                <strong className="text-foreground">Borgo Siliano</strong> and{' '}
+                <strong className="text-foreground">nearby villas</strong> for
+                our guests. These options offer beautiful rooms with all meals
+                and most importantly drinks, included.
               </p>
 
               <div className="space-y-3 pt-2">
                 <div className="flex items-start gap-3 text-muted-foreground">
                   <Users className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                    Room assignment will be provided
+                    We'll let you know your room details ahead of time!
                   </span>
                 </div>
                 <div className="flex items-start gap-3 text-muted-foreground">
                   <DollarSign className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                    Subsidized rate:{' '}
-                    <strong className="text-foreground">
-                      $125/person/night
-                    </strong>
+                    Nightly rate:{' '}
+                    <strong className="text-foreground">$125/person</strong>
                   </span>
                 </div>
               </div>
@@ -62,63 +59,77 @@ export function Accommodation() {
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-muted-foreground leading-relaxed">
-                For guests who prefer alternative accommodation, we can help
-                arrange stays at nearby properties through Emma Villas.
+                If you do not want to stay in one of our pre-reserved rooms, you
+                can reserve alternative accommodation in the town of Città della
+                Pieve.
               </p>
-
               <div className="pt-2">
                 <p className="text-sm font-medium text-foreground mb-2">
-                  Contact:
+                  Recommended Accommodation:{' '}
                 </p>
-                <div className="space-y-1 text-sm text-muted-foreground">
-                  <p>info@emmavillas.com</p>
-                  <p>concierge@emmavillas.com</p>
+                <div className="space-y-1 text-sm flex flex-col gap-2 underline text-blue-400">
+                  <a
+                    href="https://hotel-vannucci.com"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    Hotel Vannucci
+                  </a>
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Important Information Card */}
-        <Card className="bg-gradient-to-br from-muted/50 to-muted/30 border border-border/50 max-w-5xl mx-auto">
+        {/* Venmo Payment Section */}
+        <Card className="bg-card border border-border/50 max-w-3xl mx-auto mt-10">
           <CardContent className="p-8 md:p-10">
-            <div className="flex items-center gap-3 justify-center mb-8">
-              <Info className="h-6 w-6 text-accent" />
+            <div className="flex items-center gap-3 justify-center mb-6">
+              <QrCode className="h-6 w-6 text-accent" />
               <h3 className="font-serif text-2xl md:text-3xl font-normal text-foreground text-center">
-                Important Information
+                Send Payment via Venmo
               </h3>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground text-base">
-                  Payment
-                </h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  We&apos;re collecting accommodation payments in advance to
-                  simplify the process and ensure a smooth experience for all
-                  guests.
-                </p>
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              {/* QR Code Image */}
+              <div className="flex-shrink-0">
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-border/30">
+                  <Image
+                    src="/venmo.jpg"
+                    alt="Venmo QR Code"
+                    width={250}
+                    height={250}
+                    className="rounded-lg"
+                  />
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground text-base">
-                  Transportation
-                </h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  We&apos;re arranging transfers from the train station to the
-                  venue for check-in and check-out days. Details will be
-                  provided with your invitation.
+              {/* Payment Instructions */}
+              <div className="flex-1 space-y-4 text-center md:text-left">
+                <p className="text-muted-foreground leading-relaxed">
+                  Please send your accommodation payment via Venmo using the QR
+                  code or by searching for our Venmo account:{' '}
+                  <a
+                    href="https://venmo.com/u/blanbrews"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="underline text-blue-400"
+                  >
+                    @blanbrews
+                  </a>
                 </p>
-              </div>
-
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground text-base">
-                  Tourist Tax
-                </h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Please note there is a small tourist tax (approximately €2 per
-                  person, per night) collected separately at the venue.
+                <div className="space-y-2">
+                  <p className="text-sm font-medium text-foreground">
+                    Payment Amount:
+                  </p>
+                  <p className="text-lg font-semibold text-accent">
+                    $125 per person per night
+                  </p>
+                </div>
+                <p className="text-xs text-muted-foreground italic">
+                  Include your name(s) in the payment note so we can match it to
+                  your reservation.
                 </p>
               </div>
             </div>
