@@ -36,7 +36,7 @@ export function Accommodation() {
                 <div className="flex items-start gap-3 text-muted-foreground">
                   <Users className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                    We'll let you know your room details ahead of time!
+                    We&apos;ll let you know your room details ahead of time!
                   </span>
                 </div>
                 <div className="flex items-start gap-3 text-muted-foreground">
