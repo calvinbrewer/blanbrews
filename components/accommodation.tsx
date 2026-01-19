@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Home, MapPin, Users, DollarSign, QrCode } from 'lucide-react'
+import { Home, MapPin, Users, DollarSign, QrCode, Calendar } from 'lucide-react'
 import Image from 'next/image'
 
 export function Accommodation() {
@@ -27,9 +27,12 @@ export function Accommodation() {
               <p className="text-muted-foreground leading-relaxed">
                 We have reserved rooms at{' '}
                 <strong className="text-foreground">Borgo Siliano</strong> and{' '}
-                <strong className="text-foreground">nearby villas</strong> for
-                our guests. These options offer beautiful rooms with all meals
-                and most importantly drinks, included.
+                <strong className="text-foreground">
+                  separate nearby villas
+                </strong>{' '}
+                for our guests. Please notify us sooner than later if you would
+                like to leverage these options, as they are available on a
+                first-come, first-served basis.
               </p>
 
               <div className="space-y-3 pt-2">
@@ -46,6 +49,13 @@ export function Accommodation() {
                     <strong className="text-foreground">$125/person</strong>
                   </span>
                 </div>
+                <div className="flex items-start gap-3 text-muted-foreground">
+                  <Calendar className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">
+                    Payment due by:{' '}
+                    <strong className="text-foreground">June 1st, 2026</strong>
+                  </span>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -59,9 +69,9 @@ export function Accommodation() {
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-muted-foreground leading-relaxed">
-                If you do not want to stay in one of our pre-reserved rooms, you
-                can reserve alternative accommodation in the town of Città della
-                Pieve.
+                If you do not want to stay in one of our pre-reserved rooms or
+                are traveling with children, you can reserve alternative
+                accommodation in the town of Città della Pieve.
               </p>
               <div className="pt-2">
                 <p className="text-sm font-medium text-foreground mb-2">

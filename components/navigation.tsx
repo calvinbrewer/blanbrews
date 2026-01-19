@@ -58,6 +58,17 @@ export function Navigation() {
             >
               Accommodation
             </button>
+            <button
+              type="button"
+              onClick={() => scrollToSection('travel')}
+              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
+                isScrolled
+                  ? 'text-foreground'
+                  : 'text-white/90 hover:text-white'
+              }`}
+            >
+              Travel
+            </button>
 
             {/* Center Logo/Names */}
             <button
@@ -134,6 +145,13 @@ export function Navigation() {
                 className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
               >
                 Accommodation
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollToSection('travel')}
+                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
+              >
+                Travel
               </button>
               <button
                 type="button"

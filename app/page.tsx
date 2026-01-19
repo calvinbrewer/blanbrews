@@ -2,6 +2,7 @@ import { Navigation } from '@/components/navigation'
 import { Hero } from '@/components/hero'
 import { EventDetails } from '@/components/event-details'
 import { Accommodation } from '@/components/accommodation'
+import { Travel } from '@/components/travel'
 import { RSVP } from '@/components/rsvp'
 import { Gifts } from '@/components/gifts'
 import { FAQ } from '@/components/faq'
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <EventDetails />
       <Accommodation />
+      <Travel />
       <RSVP />
       <Gifts />
       <FAQ />

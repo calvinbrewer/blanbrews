@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Calendar, MapPin, Clock, Shirt } from 'lucide-react'
+import Link from 'next/link'
 
 export function EventDetails() {
   const events = [
@@ -30,7 +31,7 @@ export function EventDetails() {
       description: 'An after party to continue the shenanigans.',
     },
     {
-      title: 'Sunday Brunch',
+      title: 'Saturday Brunch',
       date: 'October 3, 2026',
       time: '10:00 AM',
       location: 'Borgo Siliano',
@@ -49,7 +50,7 @@ export function EventDetails() {
     {
       title: 'Departures',
       date: 'October 4, 2026',
-      time: '11:00 AM',
+      time: '10:00 AM',
       location: 'Home',
       dressCode: null,
       description:
@@ -67,7 +68,15 @@ export function EventDetails() {
           </h2>
           <div className="w-20 h-0.5 bg-accent/40 mx-auto mb-6" />
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Vocabolo Sigliano 47, Città della Pieve, IT 06062
+            <Link
+              href={'https://anticopoderesiliano.it/en/home/'}
+              target="_blank"
+              className="underline text-blue-400"
+              rel="noreferrer noopener"
+            >
+              Borgo Siliano
+            </Link>{' '}
+            is the venue for the wedding.
           </p>
         </div>
 
@@ -101,7 +110,18 @@ export function EventDetails() {
                   <div className="flex items-center gap-3 text-muted-foreground group-hover:text-foreground transition-colors">
                     <MapPin className="h-4 w-4 text-accent flex-shrink-0" />
                     <span className="text-sm md:text-base">
-                      {event.location}
+                      {event.location === 'Borgo Siliano' ? (
+                        <Link
+                          href={'https://anticopoderesiliano.it/en/home/'}
+                          target="_blank"
+                          className="underline text-blue-400"
+                          rel="noreferrer noopener"
+                        >
+                          {event.location}
+                        </Link>
+                      ) : (
+                        event.location
+                      )}
                     </span>
                   </div>
                   {event.dressCode && (

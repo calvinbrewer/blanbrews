@@ -424,8 +424,28 @@ export function RSVP() {
 
                 {/* Housing preference - shown if anyone is attending */}
                 {anyoneAttending() && (
-                  <div className="pt-4 border-t border-border/30 animate-in fade-in duration-300">
-                    <div className="flex items-start space-x-3 border border-border/50 rounded-lg p-4 hover:border-accent/30 transition-colors">
+                  <div className="pt-4 border-t border-border/30 animate-in fade-in duration-300 space-y-4">
+                    {/* Default option info */}
+                    <div className="bg-accent/5 border border-accent/20 rounded-lg p-4">
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        <strong className="text-foreground">
+                          Default: Reserved Rooms
+                        </strong>
+                        <br />
+                        We have reserved rooms at Borgo Siliano and separate
+                        nearby villas for the majority of our guests on a
+                        first-come, first-served basis. If you would like to
+                        stay in these reserved rooms, no action is needed.
+                        Please make payment by{' '}
+                        <strong className="text-foreground">
+                          June 1st, 2026
+                        </strong>{' '}
+                        to secure your accommodation.
+                      </p>
+                    </div>
+
+                    {/* Opt-out option */}
+                    <div className="flex items-center space-x-3 border border-border/50 rounded-lg p-4 hover:border-accent/30 transition-colors">
                       <input
                         type="checkbox"
                         id="housing"
@@ -437,10 +457,7 @@ export function RSVP() {
                         htmlFor="housing"
                         className="cursor-pointer font-normal flex-1"
                       >
-                        By selecting this option, you are{' '}
-                        <strong>opting out</strong> of the accommodation
-                        reserved for you and will book your accommodation
-                        separately.
+                        I will arrange my own accommodation for my party.
                       </Label>
                     </div>
                   </div>
