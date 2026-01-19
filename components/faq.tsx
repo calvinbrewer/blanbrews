@@ -13,7 +13,7 @@ const faqs: FAQItem[] = [
   {
     question: 'When should I RSVP by?',
     answer:
-      'Please respond by June 1st, 2026. This helps us finalize arrangements with the venue and ensure we have accurate counts for meals and accommodations.',
+      'Please respond and pay by June 1st, 2026. This helps us finalize arrangements with the venue and ensure we have accurate counts for meals and accommodations.',
   },
   {
     question: 'What is included in the accommodation cost?',

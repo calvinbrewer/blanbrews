@@ -13,7 +13,7 @@ export function Gifts() {
           </h2>
           <div className="w-20 h-0.5 bg-accent/40 mx-auto mb-6" />
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Your presence is the greatest gift
+            Your presence is the greatest gift.
           </p>
         </div>
 

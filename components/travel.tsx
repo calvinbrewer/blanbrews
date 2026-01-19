@@ -1,7 +1,7 @@
 'use client'
 
 import { Card, CardContent } from '@/components/ui/card'
-import { Car, Train, MapPin } from 'lucide-react'
+import { Car, Train, MapPin, Plane } from 'lucide-react'
 import Link from 'next/link'
 
 export function Travel() {
@@ -26,72 +26,152 @@ export function Travel() {
           </p>
         </div>
 
-        {/* Travel Options */}
+        {/* Travel Options by Arrival City */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-10">
-          {/* By Car */}
+          {/* Arriving in Florence */}
           <Card className="group bg-card border border-border/50 hover:border-accent/30 hover:shadow-xl transition-all duration-300">
-            <CardContent className="pt-6 space-y-4">
+            <CardContent className="pt-6 space-y-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="rounded-full bg-accent/10 p-3">
-                  <Car className="h-6 w-6 text-accent" />
+                  <MapPin className="h-6 w-6 text-accent" />
                 </div>
                 <h3 className="font-serif text-2xl md:text-3xl font-normal text-foreground">
-                  By Car
+                  Arriving in Florence
                 </h3>
               </div>
-              <div className="space-y-3 text-muted-foreground">
-                <p className="leading-relaxed">
-                  <strong className="text-foreground">From Florence:</strong>{' '}
-                  Approximately 1.5-2 hours
-                </p>
-                <p className="leading-relaxed">
-                  <strong className="text-foreground">From Rome:</strong>{' '}
-                  Approximately 2-2.5 hours
-                </p>
-                <p className="text-sm pt-2">
-                  Ample parking is available at each villa.
-                </p>
+
+              <div className="space-y-4">
+                {/* Air */}
+                <div className="flex items-start gap-3">
+                  <Plane className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground mb-1">
+                      By Air
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Fly into the Florence airport{' '}
+                      <strong className="text-foreground">(FLR)</strong>, then
+                      continue by car or train below.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Car */}
+                <div className="flex items-start gap-3">
+                  <Car className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground mb-1">
+                      By Car
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Approximately{' '}
+                      <strong className="text-foreground">1.5-2 hours</strong>{' '}
+                      drive. Ample parking available at each villa.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Train */}
+                <div className="flex items-start gap-3">
+                  <Train className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground mb-1">
+                      By Train
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Travel to{' '}
+                      <strong className="text-foreground">
+                        Chiusi-Chianciano Terme
+                      </strong>{' '}
+                      station, then take a{' '}
+                      <strong className="text-foreground">10 minute</strong>{' '}
+                      taxi to the property. Pre-book transfers through{' '}
+                      <a
+                        href="http://www.giorgiservice.it/"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="underline text-blue-400"
+                      >
+                        Giorgi Service
+                      </a>
+                      .
+                    </p>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* By Train */}
+          {/* Arriving in Rome */}
           <Card className="group bg-card border border-border/50 hover:border-accent/30 hover:shadow-xl transition-all duration-300">
-            <CardContent className="pt-6 space-y-4">
+            <CardContent className="pt-6 space-y-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="rounded-full bg-accent/10 p-3">
-                  <Train className="h-6 w-6 text-accent" />
+                  <MapPin className="h-6 w-6 text-accent" />
                 </div>
                 <h3 className="font-serif text-2xl md:text-3xl font-normal text-foreground">
-                  By Train
+                  Arriving in Rome
                 </h3>
               </div>
-              <div className="space-y-3 text-muted-foreground">
-                <p className="leading-relaxed">
-                  Travel from Florence or Rome to{' '}
-                  <strong className="text-foreground">
-                    Chiusi-Chianciano Terme
-                  </strong>{' '}
-                  station.
-                </p>
-                <p className="leading-relaxed">
-                  Then take a{' '}
-                  <strong className="text-foreground">10 minute</strong> taxi to
-                  the property.
-                </p>
-                <p className="text-sm pt-2">
-                  If you wish to pre-book a transfer from the train station,
-                  consider booking through{' '}
-                  <a
-                    href="http://www.giorgiservice.it/"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="underline text-blue-400"
-                  >
-                    Giorgi Service
-                  </a>
-                  .
-                </p>
+
+              <div className="space-y-4">
+                {/* Air */}
+                <div className="flex items-start gap-3">
+                  <Plane className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground mb-1">
+                      By Air
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Fly into one of the two Rome airports{' '}
+                      <strong className="text-foreground">(FCO/CIA)</strong>,
+                      then continue by car or train below.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Car */}
+                <div className="flex items-start gap-3">
+                  <Car className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground mb-1">
+                      By Car
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Approximately{' '}
+                      <strong className="text-foreground">2-2.5 hours</strong>{' '}
+                      drive. Ample parking available at each villa.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Train */}
+                <div className="flex items-start gap-3">
+                  <Train className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground mb-1">
+                      By Train
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Travel to{' '}
+                      <strong className="text-foreground">
+                        Chiusi-Chianciano Terme
+                      </strong>{' '}
+                      station, then take a{' '}
+                      <strong className="text-foreground">10 minute</strong>{' '}
+                      taxi to the property. Pre-book transfers through{' '}
+                      <a
+                        href="http://www.giorgiservice.it/"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="underline text-blue-400"
+                      >
+                        Giorgi Service
+                      </a>
+                      .
+                    </p>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>

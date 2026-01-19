@@ -1,5 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Home, MapPin, Users, DollarSign, QrCode, Calendar } from 'lucide-react'
+import {
+  Home,
+  MapPin,
+  Users,
+  DollarSign,
+  QrCode,
+  Calendar,
+  Link,
+} from 'lucide-react'
 import Image from 'next/image'
 
 export function Accommodation() {
@@ -45,8 +53,8 @@ export function Accommodation() {
                 <div className="flex items-start gap-3 text-muted-foreground">
                   <DollarSign className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                    Nightly rate:{' '}
-                    <strong className="text-foreground">$125/person</strong>
+                    Total cost for 3 nights:{' '}
+                    <strong className="text-foreground">$375/person</strong>
                   </span>
                 </div>
                 <div className="flex items-start gap-3 text-muted-foreground">
@@ -86,6 +94,17 @@ export function Accommodation() {
                     Hotel Vannucci
                   </a>
                 </div>
+              </div>
+              <div className="pt-4 border-t border-border/30">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">Transportation:</strong>{' '}
+                  For guests staying offsite in the town of Città della Pieve,
+                  transportation will be provided to and from the{' '}
+                  <a href="#events" className="underline text-blue-400">
+                    wedding events
+                  </a>
+                  .
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -134,7 +153,7 @@ export function Accommodation() {
                     Payment Amount:
                   </p>
                   <p className="text-lg font-semibold text-accent">
-                    $125 per person per night
+                    $375 per person (total cost for 3 nights)
                   </p>
                 </div>
                 <p className="text-xs text-muted-foreground italic">

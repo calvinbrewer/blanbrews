@@ -44,7 +44,7 @@ export function EventDetails() {
       date: 'October 3, 2026',
       time: '5:30 PM',
       location: 'Borgo Siliano',
-      dressCode: 'Semi-formal (did someone say linens?!)',
+      dressCode: 'Dressy-casual (did someone say linens?!)',
       description: 'A special farewell dinner in the vineyards.',
     },
     {
