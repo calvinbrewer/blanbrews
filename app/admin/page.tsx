@@ -48,6 +48,12 @@ export default function AdminPage() {
     plusOneGuestId: '',
   })
   const [searchTerm, setSearchTerm] = useState('')
+  const [rsvpFilter, setRsvpFilter] = useState<
+    'all' | 'rsvped' | 'pending'
+  >('all')
+  const [rsvpSort, setRsvpSort] = useState<'pending-first' | 'rsvped-first'>(
+    'pending-first',
+  )
 
   useEffect(() => {
     loadGuests()
@@ -204,12 +210,24 @@ export default function AdminPage() {
     return guests.find((g) => g.id === relationship.primaryGuestId) || null
   }
 
-  const filteredGuests = guests.filter(
-    (guest) =>
-      guest.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      guest.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      guest.email?.toLowerCase().includes(searchTerm.toLowerCase()),
-  )
+  const filteredGuests = guests
+    .filter(
+      (guest) =>
+        guest.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        guest.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        guest.email?.toLowerCase().includes(searchTerm.toLowerCase()),
+    )
+    .filter((guest) => {
+      if (rsvpFilter === 'all') return true
+      if (rsvpFilter === 'rsvped') return guest.hasRsvped
+      return !guest.hasRsvped // pending
+    })
+    .sort((a, b) => {
+      if (rsvpSort === 'pending-first') {
+        return (a.hasRsvped ? 1 : 0) - (b.hasRsvped ? 1 : 0)
+      }
+      return (b.hasRsvped ? 1 : 0) - (a.hasRsvped ? 1 : 0) // rsvped-first
+    })
 
   const stats = {
     total: guests.length,
@@ -313,14 +331,47 @@ export default function AdminPage() {
               </Button>
             </div>
 
-            {/* Search */}
-            <div className="mb-6">
+            {/* Search and RSVP filter/sort */}
+            <div className="mb-6 flex flex-wrap items-center gap-3">
               <Input
                 placeholder="Search guests by name or email..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="max-w-md"
               />
+              <div className="flex items-center gap-2">
+                <Label htmlFor="rsvp-filter" className="text-sm text-muted-foreground whitespace-nowrap">
+                  RSVP status:
+                </Label>
+                <select
+                  id="rsvp-filter"
+                  value={rsvpFilter}
+                  onChange={(e) =>
+                    setRsvpFilter(e.target.value as 'all' | 'rsvped' | 'pending')
+                  }
+                  className="rounded-xl border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="all">All</option>
+                  <option value="rsvped">RSVP&apos;d</option>
+                  <option value="pending">Pending</option>
+                </select>
+              </div>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="rsvp-sort" className="text-sm text-muted-foreground whitespace-nowrap">
+                  Sort:
+                </Label>
+                <select
+                  id="rsvp-sort"
+                  value={rsvpSort}
+                  onChange={(e) =>
+                    setRsvpSort(e.target.value as 'pending-first' | 'rsvped-first')
+                  }
+                  className="rounded-xl border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="pending-first">Pending first</option>
+                  <option value="rsvped-first">RSVP&apos;d first</option>
+                </select>
+              </div>
             </div>
           </>
         )}

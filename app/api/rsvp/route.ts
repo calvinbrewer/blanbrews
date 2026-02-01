@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { updateMultipleGuestsRSVP } from '@/lib/db/queries'
 import type { RSVPFormData } from '@/lib/types'
+import { sendEmail } from '@/lib/resend'
 
 export async function POST(request: Request) {
   try {
@@ -27,6 +28,20 @@ export async function POST(request: Request) {
       dietaryRestrictions,
       wantsOwnHousing: wantsOwnHousing || false,
     })
+
+    try {
+      await sendEmail(
+        updatedGuests.map((guest) => ({
+          firstName: guest.firstName,
+          lastName: guest.lastName,
+        })),
+        isAttending,
+        dietaryRestrictions || '',
+        wantsOwnHousing || false,
+      )
+    } catch (error) {
+      console.error('Error sending email:', error)
+    }
 
     return NextResponse.json({
       success: true,
