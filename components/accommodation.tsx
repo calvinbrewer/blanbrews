@@ -65,6 +65,18 @@ export function Accommodation() {
                   </span>
                 </div>
               </div>
+              <div className="pt-4 border-t border-border/30">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">
+                    Accommodation fees include:
+                  </strong>{' '}
+                  all food and drink during the{' '}
+                  <a href="#events" className="underline text-blue-400">
+                    wedding events
+                  </a>
+                  .
+                </p>
+              </div>
             </CardContent>
           </Card>
 
