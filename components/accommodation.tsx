@@ -66,11 +66,12 @@ export function Accommodation() {
                 </div>
               </div>
               <div className="pt-4 border-t border-border/30">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong className="text-foreground">
+                <p className="text-sm text-muted-foreground leading-relaxed italic">
+                  {/* <strong className="text-foreground">
                     Accommodation fees include:
-                  </strong>{' '}
-                  all food and drink during the{' '}
+                  </strong>{' '} */}
+                  The bride and groom will be taking care of all food and
+                  beverages during the{' '}
                   <a href="#events" className="underline text-blue-400">
                     wedding events
                   </a>
@@ -107,7 +108,7 @@ export function Accommodation() {
                   </a>
                 </div>
               </div>
-              <div className="pt-4 border-t border-border/30">
+              <div className="pt-4 border-t border-border/30 mt-auto">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">Transportation:</strong>{' '}
                   For guests staying offsite in the town of Città della Pieve,
