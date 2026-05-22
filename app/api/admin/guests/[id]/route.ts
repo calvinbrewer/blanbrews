@@ -2,13 +2,21 @@ import { NextResponse } from 'next/server'
 import { updateGuest, deleteGuest } from '@/lib/db/queries'
 import type { CreateGuestRequest } from '@/lib/types'
 
+type AdminUpdateGuestRequest = Partial<CreateGuestRequest> & {
+  hasPaid?: boolean
+  hasRsvped?: boolean
+  isAttending?: boolean | null
+  dietaryRestrictions?: string | null
+  wantsOwnHousing?: boolean
+}
+
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params
-    const body: Partial<CreateGuestRequest> = await request.json()
+    const body: AdminUpdateGuestRequest = await request.json()
 
     const guest = await updateGuest(id, body)
 

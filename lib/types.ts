@@ -8,6 +8,7 @@ export interface Guest {
   isAttending: boolean | null
   dietaryRestrictions: string | null
   wantsOwnHousing: boolean
+  hasPaid: boolean
   rsvpedAt: Date | null
   createdAt: Date
   updatedAt: Date

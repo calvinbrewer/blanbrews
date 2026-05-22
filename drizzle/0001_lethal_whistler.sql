@@ -1,0 +1,1 @@
+ALTER TABLE "guests" ADD COLUMN "has_paid" boolean DEFAULT false NOT NULL;

@@ -49,8 +49,11 @@ export default function AdminPage() {
   })
   const [searchTerm, setSearchTerm] = useState('')
   const [rsvpFilter, setRsvpFilter] = useState<
-    'all' | 'rsvped' | 'pending'
+    'all' | 'rsvped' | 'pending' | 'attending' | 'declined'
   >('all')
+  const [paidFilter, setPaidFilter] = useState<'all' | 'paid' | 'unpaid'>(
+    'all',
+  )
   const [rsvpSort, setRsvpSort] = useState<'pending-first' | 'rsvped-first'>(
     'pending-first',
   )
@@ -114,6 +117,11 @@ export default function AdminPage() {
           firstName: selectedGuest.firstName,
           lastName: selectedGuest.lastName,
           email: selectedGuest.email,
+          hasRsvped: selectedGuest.hasRsvped,
+          isAttending: selectedGuest.isAttending,
+          dietaryRestrictions: selectedGuest.dietaryRestrictions,
+          wantsOwnHousing: selectedGuest.wantsOwnHousing,
+          hasPaid: selectedGuest.hasPaid,
         }),
       })
 
@@ -124,6 +132,58 @@ export default function AdminPage() {
       }
     } catch (error) {
       console.error('Error updating guest:', error)
+    }
+  }
+
+  const handleTogglePaid = async (guest: Guest) => {
+    // Optimistic update so the click feels instant
+    setGuests((prev) =>
+      prev.map((g) =>
+        g.id === guest.id ? { ...g, hasPaid: !g.hasPaid } : g,
+      ),
+    )
+    try {
+      const response = await fetch(`/api/admin/guests/${guest.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ hasPaid: !guest.hasPaid }),
+      })
+
+      if (!response.ok) {
+        loadGuests() // revert
+      }
+    } catch (error) {
+      console.error('Error toggling paid status:', error)
+      loadGuests()
+    }
+  }
+
+  const handleSetRsvpStatus = async (
+    guest: Guest,
+    status: 'pending' | 'attending' | 'declined',
+  ) => {
+    const payload =
+      status === 'pending'
+        ? { hasRsvped: false, isAttending: null }
+        : { hasRsvped: true, isAttending: status === 'attending' }
+
+    setGuests((prev) =>
+      prev.map((g) => (g.id === guest.id ? { ...g, ...payload } : g)),
+    )
+
+    try {
+      const response = await fetch(`/api/admin/guests/${guest.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+
+      if (!response.ok) {
+        loadGuests()
+      }
+    } catch (error) {
+      console.error('Error updating RSVP status:', error)
+      loadGuests()
     }
   }
 
@@ -220,7 +280,16 @@ export default function AdminPage() {
     .filter((guest) => {
       if (rsvpFilter === 'all') return true
       if (rsvpFilter === 'rsvped') return guest.hasRsvped
+      if (rsvpFilter === 'attending')
+        return guest.hasRsvped && guest.isAttending === true
+      if (rsvpFilter === 'declined')
+        return guest.hasRsvped && guest.isAttending === false
       return !guest.hasRsvped // pending
+    })
+    .filter((guest) => {
+      if (paidFilter === 'all') return true
+      if (paidFilter === 'paid') return guest.hasPaid
+      return !guest.hasPaid
     })
     .sort((a, b) => {
       if (rsvpSort === 'pending-first') {
@@ -234,6 +303,7 @@ export default function AdminPage() {
     rsvped: guests.filter((g) => g.hasRsvped).length,
     attending: guests.filter((g) => g.isAttending === true).length,
     declined: guests.filter((g) => g.isAttending === false).length,
+    paid: guests.filter((g) => g.hasPaid).length,
   }
 
   return (
@@ -267,7 +337,7 @@ export default function AdminPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -312,6 +382,18 @@ export default function AdminPage() {
               </div>
             </CardContent>
           </Card>
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Paid
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-emerald-600">
+                {stats.paid}
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Actions */}
@@ -347,13 +429,39 @@ export default function AdminPage() {
                   id="rsvp-filter"
                   value={rsvpFilter}
                   onChange={(e) =>
-                    setRsvpFilter(e.target.value as 'all' | 'rsvped' | 'pending')
+                    setRsvpFilter(
+                      e.target.value as
+                        | 'all'
+                        | 'rsvped'
+                        | 'pending'
+                        | 'attending'
+                        | 'declined',
+                    )
                   }
                   className="rounded-xl border border-input bg-background px-3 py-2 text-sm"
                 >
                   <option value="all">All</option>
                   <option value="rsvped">RSVP&apos;d</option>
                   <option value="pending">Pending</option>
+                  <option value="attending">Attending</option>
+                  <option value="declined">Declined</option>
+                </select>
+              </div>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="paid-filter" className="text-sm text-muted-foreground whitespace-nowrap">
+                  Payment:
+                </Label>
+                <select
+                  id="paid-filter"
+                  value={paidFilter}
+                  onChange={(e) =>
+                    setPaidFilter(e.target.value as 'all' | 'paid' | 'unpaid')
+                  }
+                  className="rounded-xl border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="all">All</option>
+                  <option value="paid">Paid</option>
+                  <option value="unpaid">Unpaid</option>
                 </select>
               </div>
               <div className="flex items-center gap-2">
@@ -405,6 +513,9 @@ export default function AdminPage() {
                           Housing
                         </th>
                         <th className="pb-3 font-semibold">Dietary</th>
+                        <th className="pb-3 font-semibold text-center">
+                          Paid
+                        </th>
                         <th className="pb-3 font-semibold text-right">
                           Actions
                         </th>
@@ -420,13 +531,35 @@ export default function AdminPage() {
                             {guest.email || '-'}
                           </td>
                           <td className="py-3 text-center">
-                            {!guest.hasRsvped ? (
-                              <span className="text-gray-400">Pending</span>
-                            ) : guest.isAttending ? (
-                              <CheckCircle className="w-5 h-5 text-green-600 mx-auto" />
-                            ) : (
-                              <XCircle className="w-5 h-5 text-red-600 mx-auto" />
-                            )}
+                            <select
+                              value={
+                                !guest.hasRsvped
+                                  ? 'pending'
+                                  : guest.isAttending
+                                    ? 'attending'
+                                    : 'declined'
+                              }
+                              onChange={(e) =>
+                                handleSetRsvpStatus(
+                                  guest,
+                                  e.target.value as
+                                    | 'pending'
+                                    | 'attending'
+                                    | 'declined',
+                                )
+                              }
+                              className={`rounded-lg border border-input bg-background px-2 py-1 text-xs ${
+                                !guest.hasRsvped
+                                  ? 'text-muted-foreground'
+                                  : guest.isAttending
+                                    ? 'text-green-700'
+                                    : 'text-red-700'
+                              }`}
+                            >
+                              <option value="pending">Pending</option>
+                              <option value="attending">Attending</option>
+                              <option value="declined">Declined</option>
+                            </select>
                           </td>
                           <td className="py-3 text-center">
                             {guest.wantsOwnHousing ? (
@@ -441,6 +574,19 @@ export default function AdminPage() {
                           </td>
                           <td className="py-3 text-sm text-muted-foreground max-w-xs truncate">
                             {guest.dietaryRestrictions || '-'}
+                          </td>
+                          <td className="py-3 text-center">
+                            <input
+                              type="checkbox"
+                              checked={guest.hasPaid}
+                              onChange={() => handleTogglePaid(guest)}
+                              className="h-5 w-5 cursor-pointer accent-emerald-600"
+                              title={
+                                guest.hasPaid
+                                  ? 'Mark as unpaid'
+                                  : 'Mark as paid'
+                              }
+                            />
                           </td>
                           <td className="py-3">
                             <div className="flex gap-2 justify-end">
@@ -740,7 +886,7 @@ export default function AdminPage() {
       {/* Edit Guest Modal */}
       {showEditModal && selectedGuest && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <Card className="w-full max-w-md">
+          <Card className="w-full max-w-md max-h-[90vh] overflow-y-auto">
             <CardHeader>
               <CardTitle>Edit Guest</CardTitle>
             </CardHeader>
@@ -788,6 +934,94 @@ export default function AdminPage() {
                     }
                   />
                 </div>
+
+                <div className="border-t pt-4 mt-2">
+                  <h4 className="text-sm font-semibold mb-3">RSVP</h4>
+                  <div className="space-y-2">
+                    <Label htmlFor="editRsvpStatus">Status</Label>
+                    <select
+                      id="editRsvpStatus"
+                      value={
+                        !selectedGuest.hasRsvped
+                          ? 'pending'
+                          : selectedGuest.isAttending
+                            ? 'attending'
+                            : 'declined'
+                      }
+                      onChange={(e) => {
+                        const v = e.target.value
+                        if (v === 'pending') {
+                          setSelectedGuest({
+                            ...selectedGuest,
+                            hasRsvped: false,
+                            isAttending: null,
+                          })
+                        } else {
+                          setSelectedGuest({
+                            ...selectedGuest,
+                            hasRsvped: true,
+                            isAttending: v === 'attending',
+                          })
+                        }
+                      }}
+                      className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm"
+                    >
+                      <option value="pending">Pending (no RSVP yet)</option>
+                      <option value="attending">Attending</option>
+                      <option value="declined">Declined</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-2 mt-3">
+                    <Label htmlFor="editDietary">
+                      Dietary restrictions
+                    </Label>
+                    <Input
+                      id="editDietary"
+                      value={selectedGuest.dietaryRestrictions || ''}
+                      onChange={(e) =>
+                        setSelectedGuest({
+                          ...selectedGuest,
+                          dietaryRestrictions: e.target.value || null,
+                        })
+                      }
+                      placeholder="None"
+                    />
+                  </div>
+
+                  <label className="flex items-center gap-2 mt-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={selectedGuest.wantsOwnHousing}
+                      onChange={(e) =>
+                        setSelectedGuest({
+                          ...selectedGuest,
+                          wantsOwnHousing: e.target.checked,
+                        })
+                      }
+                      className="h-4 w-4"
+                    />
+                    <span className="text-sm">
+                      Arranging their own housing
+                    </span>
+                  </label>
+
+                  <label className="flex items-center gap-2 mt-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={selectedGuest.hasPaid}
+                      onChange={(e) =>
+                        setSelectedGuest({
+                          ...selectedGuest,
+                          hasPaid: e.target.checked,
+                        })
+                      }
+                      className="h-4 w-4"
+                    />
+                    <span className="text-sm">Paid</span>
+                  </label>
+                </div>
+
                 <div className="flex gap-2 pt-4">
                   <Button
                     type="button"

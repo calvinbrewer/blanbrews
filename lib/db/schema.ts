@@ -10,6 +10,7 @@ export const guests = pgTable('guests', {
   isAttending: boolean('is_attending'),
   dietaryRestrictions: text('dietary_restrictions'),
   wantsOwnHousing: boolean('wants_own_housing').notNull().default(false),
+  hasPaid: boolean('has_paid').notNull().default(false),
   rsvpedAt: timestamp('rsvped_at'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),

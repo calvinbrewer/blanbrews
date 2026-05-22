@@ -162,14 +162,29 @@ export async function createGuest(data: CreateGuestRequest): Promise<Guest> {
  */
 export async function updateGuest(
   guestId: string,
-  data: Partial<CreateGuestRequest>,
+  data: Partial<CreateGuestRequest> & {
+    hasPaid?: boolean
+    hasRsvped?: boolean
+    isAttending?: boolean | null
+    dietaryRestrictions?: string | null
+    wantsOwnHousing?: boolean
+  },
 ): Promise<Guest | null> {
+  const updates: Record<string, unknown> = {
+    ...data,
+    updatedAt: new Date(),
+  }
+
+  // Keep rsvpedAt in sync when an admin toggles hasRsvped
+  if (data.hasRsvped === true) {
+    updates.rsvpedAt = new Date()
+  } else if (data.hasRsvped === false) {
+    updates.rsvpedAt = null
+  }
+
   const result = await db
     .update(guests)
-    .set({
-      ...data,
-      updatedAt: new Date(),
-    })
+    .set(updates)
     .where(eq(guests.id, guestId))
     .returning()
 
@@ -291,6 +306,7 @@ function mapDbGuestToGuest(dbGuest: typeof guests.$inferSelect): Guest {
     isAttending: dbGuest.isAttending,
     dietaryRestrictions: dbGuest.dietaryRestrictions,
     wantsOwnHousing: dbGuest.wantsOwnHousing,
+    hasPaid: dbGuest.hasPaid,
     rsvpedAt: dbGuest.rsvpedAt,
     createdAt: dbGuest.createdAt,
     updatedAt: dbGuest.updatedAt,

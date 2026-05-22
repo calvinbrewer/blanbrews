@@ -1,7 +1,7 @@
 'use client'
 
 import { Card, CardContent } from '@/components/ui/card'
-import { Car, Train, MapPin, Plane } from 'lucide-react'
+import { Car, Train, MapPin, Plane, BookOpen, Compass } from 'lucide-react'
 import Link from 'next/link'
 
 export function Travel() {
@@ -176,6 +176,79 @@ export function Travel() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Tori's Travel Guides */}
+        <Card className="bg-card border border-border/50 max-w-4xl mx-auto mb-10">
+          <CardContent className="p-8 md:p-10">
+            <div className="text-center mb-8">
+              <div className="flex items-center gap-3 justify-center mb-4">
+                <BookOpen className="h-6 w-6 text-accent" />
+                <h3 className="font-serif text-2xl md:text-3xl font-normal text-foreground">
+                  Tori&apos;s Travel Guides
+                </h3>
+              </div>
+              <p className="text-muted-foreground leading-relaxed text-base max-w-2xl mx-auto">
+                Tori has written a few guides from her own adventures through
+                Italy and Europe. If you&apos;re extending your trip before or
+                after the wedding, these are a lovely place to start.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4 mb-4">
+              <a
+                href="https://the-anonymous-traveler.medium.com/itinerary-for-three-days-in-florence-23ac533dfcd4"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group flex items-start gap-3 rounded-xl border border-border/50 p-5 hover:border-accent/40 hover:bg-muted/30 transition-all"
+              >
+                <MapPin className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-foreground mb-1 group-hover:text-accent transition-colors">
+                    Three Days in Florence
+                  </p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    A relaxed three-day itinerary for the Renaissance city.
+                  </p>
+                </div>
+              </a>
+
+              <a
+                href="https://the-anonymous-traveler.medium.com/rome-amalfi-coast-naples-2022-f5c455fe920c"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group flex items-start gap-3 rounded-xl border border-border/50 p-5 hover:border-accent/40 hover:bg-muted/30 transition-all"
+              >
+                <MapPin className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-foreground mb-1 group-hover:text-accent transition-colors">
+                    Rome, the Amalfi Coast & Naples
+                  </p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    From the Colosseum to the cliffs of Positano.
+                  </p>
+                </div>
+              </a>
+            </div>
+
+            <a
+              href="https://the-anonymous-traveler.medium.com/list/europe-f9a391bcf864"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="group flex items-start gap-3 rounded-xl border border-border/50 p-5 hover:border-accent/40 hover:bg-muted/30 transition-all"
+            >
+              <Compass className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+              <div className="flex-1">
+                <p className="text-sm font-medium text-foreground mb-1 group-hover:text-accent transition-colors">
+                  Adventuring Beyond Italy
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Tori&apos;s full Europe reading list for guests looking to do
+                  more than just Italy!
+                </p>
+              </div>
+            </a>
+          </CardContent>
+        </Card>
 
         {/* Venue Location Card */}
         <Card className="bg-gradient-to-br from-muted/50 to-muted/30 border border-border/50 max-w-4xl mx-auto">
