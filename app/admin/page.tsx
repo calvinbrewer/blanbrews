@@ -54,6 +54,9 @@ export default function AdminPage() {
   const [paidFilter, setPaidFilter] = useState<'all' | 'paid' | 'unpaid'>(
     'all',
   )
+  const [housingFilter, setHousingFilter] = useState<
+    'all' | 'provided' | 'own'
+  >('all')
   const [rsvpSort, setRsvpSort] = useState<'pending-first' | 'rsvped-first'>(
     'pending-first',
   )
@@ -291,6 +294,11 @@ export default function AdminPage() {
       if (paidFilter === 'paid') return guest.hasPaid
       return !guest.hasPaid
     })
+    .filter((guest) => {
+      if (housingFilter === 'all') return true
+      if (housingFilter === 'own') return guest.wantsOwnHousing
+      return !guest.wantsOwnHousing
+    })
     .sort((a, b) => {
       if (rsvpSort === 'pending-first') {
         return (a.hasRsvped ? 1 : 0) - (b.hasRsvped ? 1 : 0)
@@ -462,6 +470,25 @@ export default function AdminPage() {
                   <option value="all">All</option>
                   <option value="paid">Paid</option>
                   <option value="unpaid">Unpaid</option>
+                </select>
+              </div>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="housing-filter" className="text-sm text-muted-foreground whitespace-nowrap">
+                  Housing:
+                </Label>
+                <select
+                  id="housing-filter"
+                  value={housingFilter}
+                  onChange={(e) =>
+                    setHousingFilter(
+                      e.target.value as 'all' | 'provided' | 'own',
+                    )
+                  }
+                  className="rounded-xl border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="all">All</option>
+                  <option value="provided">Provided</option>
+                  <option value="own">Own</option>
                 </select>
               </div>
               <div className="flex items-center gap-2">
