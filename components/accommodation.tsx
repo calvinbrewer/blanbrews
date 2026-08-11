@@ -111,12 +111,10 @@ export function Accommodation() {
               <div className="pt-4 border-t border-border/30 mt-auto">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">Transportation:</strong>{' '}
-                  For guests staying offsite in the town of Città della Pieve,
-                  transportation will be provided to and from the{' '}
-                  <a href="#events" className="underline text-blue-400">
-                    wedding events
-                  </a>
-                  .
+                  A local taxi service will be provided for guests staying in
+                  Città della Pieve to reach the venue. A complimentary return
+                  shuttle will be available after evening events; taxis should
+                  be arranged independently after brunch.
                 </p>
               </div>
             </CardContent>
