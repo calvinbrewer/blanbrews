@@ -25,8 +25,8 @@ export function Website({ settings }: { settings: SiteSettings }) {
           <WeekendHero />
           <WeekendSchedule />
           <GettingAround />
-          {settings.showExplore && <ExploreTowns />}
           {settings.showTravel && <Travel showFaqLink={settings.showFaq} />}
+          {settings.showExplore && <ExploreTowns />}
           {settings.showAccommodation && <Accommodation />}
           {settings.showRsvp && <RSVP />}
           {settings.showGifts && <Gifts />}

@@ -130,8 +130,8 @@ assert.equal(preview.status, 200)
 assert.deepEqual(sectionIds(previewHtml), [
   'events',
   'getting-around',
-  'explore',
   'travel',
+  'explore',
 ])
 assert(previewHtml.includes('Preview only'))
 assert.deepEqual(
@@ -149,8 +149,8 @@ let html = await homepage()
 assert.deepEqual(sectionIds(html), [
   'events',
   'getting-around',
-  'explore',
   'travel',
+  'explore',
 ])
 assert(html.includes('tel:+39057820178'))
 assert(html.includes('cars may be left overnight'))
@@ -185,8 +185,8 @@ await save(all)
 assert.deepEqual(sectionIds(await homepage()), [
   'events',
   'getting-around',
-  'explore',
   'travel',
+  'explore',
   'accommodation',
   'rsvp',
   'gifts',
