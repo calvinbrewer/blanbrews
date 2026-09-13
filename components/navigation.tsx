@@ -3,177 +3,95 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
+import {
+  defaultSiteSettings,
+  getNavigationItems,
+  type SiteSettings,
+} from '@/lib/site-settings'
 
-export function Navigation() {
+export function Navigation({
+  settings = defaultSiteSettings,
+}: {
+  settings?: SiteSettings
+}) {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const items = getNavigationItems(settings)
+  const solid = isScrolled || settings.mode === 'weekend'
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-      setIsOpen(false)
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+    setIsOpen(false)
   }
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm'
-          : 'bg-transparent'
-      }`}
+      aria-label="Main navigation"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${solid ? 'bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm' : 'bg-transparent'}`}
     >
-      <div className="container mx-auto px-4 py-5">
-        <div className="flex items-center justify-center">
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-10">
-            <button
-              type="button"
-              onClick={() => scrollToSection('events')}
-              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
-                isScrolled
-                  ? 'text-foreground'
-                  : 'text-white/90 hover:text-white'
-              }`}
-            >
-              Events
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('accommodation')}
-              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
-                isScrolled
-                  ? 'text-foreground'
-                  : 'text-white/90 hover:text-white'
-              }`}
-            >
-              Accommodation
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('travel')}
-              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
-                isScrolled
-                  ? 'text-foreground'
-                  : 'text-white/90 hover:text-white'
-              }`}
-            >
-              Travel
-            </button>
-
-            {/* Center Logo/Names */}
-            <button
-              type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className={`font-serif text-xl font-light transition-colors cursor-pointer ${
-                isScrolled ? 'text-foreground' : 'text-white'
-              }`}
-            >
-              T & C
-            </button>
-
-            <button
-              type="button"
-              onClick={() => scrollToSection('rsvp')}
-              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
-                isScrolled
-                  ? 'text-foreground'
-                  : 'text-white/90 hover:text-white'
-              }`}
-            >
-              RSVP
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('gifts')}
-              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
-                isScrolled
-                  ? 'text-foreground'
-                  : 'text-white/90 hover:text-white'
-              }`}
-            >
-              Registry
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('faq')}
-              className={`text-sm font-medium transition-colors hover:text-accent cursor-pointer ${
-                isScrolled
-                  ? 'text-foreground'
-                  : 'text-white/90 hover:text-white'
-              }`}
-            >
-              FAQ
-            </button>
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-center gap-6">
+          <div className="hidden md:flex flex-wrap items-center justify-center gap-x-7 gap-y-2">
+            {items.map((item, index) => (
+              <div key={item.id} className="contents">
+                {index === Math.ceil(items.length / 2) && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: 'smooth' })
+                    }
+                    aria-label="Back to top"
+                    className={`font-serif text-xl font-light cursor-pointer ${solid ? 'text-foreground' : 'text-white'}`}
+                  >
+                    T & C
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => scrollToSection(item.id)}
+                  className={`text-sm font-medium transition-colors cursor-pointer ${solid ? 'text-foreground hover:text-accent' : 'text-white/90 hover:text-white'}`}
+                >
+                  {item.label}
+                </button>
+              </div>
+            ))}
           </div>
-
-          {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
-            className={`md:hidden ${isScrolled ? 'text-foreground' : 'text-white'}`}
+            className={`md:hidden ${solid ? 'text-foreground' : 'text-white'}`}
             type="button"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
           </Button>
         </div>
-
-        {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden mt-6 pb-6 border-t border-border/30 pt-6 bg-background/95 backdrop-blur-md rounded-b-2xl -mx-4 px-4">
-            <div className="flex flex-col space-y-4">
-              <button
-                type="button"
-                onClick={() => scrollToSection('events')}
-                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
-              >
-                Events
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollToSection('accommodation')}
-                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
-              >
-                Accommodation
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollToSection('travel')}
-                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
-              >
-                Travel
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollToSection('rsvp')}
-                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
-              >
-                RSVP
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollToSection('gifts')}
-                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
-              >
-                Registry
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollToSection('faq')}
-                className="text-left text-foreground hover:text-accent transition-colors py-2 font-medium cursor-pointer"
-              >
-                FAQ
-              </button>
+          <div
+            id="mobile-navigation"
+            className="md:hidden max-h-[75vh] overflow-y-auto mt-4 pb-4 border-t border-border/30 pt-4 bg-background/95 backdrop-blur-md rounded-b-2xl -mx-4 px-4"
+          >
+            <div className="flex flex-col gap-1">
+              {items.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-left text-foreground hover:text-accent transition-colors py-3 font-medium cursor-pointer"
+                >
+                  {item.label}
+                </button>
+              ))}
             </div>
           </div>
         )}

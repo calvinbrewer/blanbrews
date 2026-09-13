@@ -1,4 +1,5 @@
-import { pgTable, uuid, text, boolean, timestamp } from 'drizzle-orm/pg-core'
+import type { SiteSettings } from '@/lib/site-settings'
+import { pgTable, uuid, text, boolean, timestamp, jsonb } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 
 export const guests = pgTable('guests', {
@@ -52,3 +53,9 @@ export const plusOneRelationshipsRelations = relations(
     }),
   }),
 )
+
+export const websiteSettings = pgTable('website_settings', {
+  id: text('id').primaryKey(),
+  settings: jsonb('settings').$type<SiteSettings>().notNull(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+}).enableRLS()

@@ -1,25 +1,16 @@
-import { Navigation } from '@/components/navigation'
-import { Hero } from '@/components/hero'
-import { EventDetails } from '@/components/event-details'
-import { Accommodation } from '@/components/accommodation'
-import { Travel } from '@/components/travel'
-import { RSVP } from '@/components/rsvp'
-import { Gifts } from '@/components/gifts'
-import { FAQ } from '@/components/faq'
-import { Footer } from '@/components/footer'
+import { Website } from '@/components/website'
+import { getSiteSettings } from '@/lib/db/site-settings'
+import { defaultSiteSettings } from '@/lib/site-settings'
 
-export default function Home() {
-  return (
-    <main className="min-h-screen">
-      <Navigation />
-      <Hero />
-      <EventDetails />
-      <Accommodation />
-      <Travel />
-      <RSVP />
-      <Gifts />
-      <FAQ />
-      <Footer />
-    </main>
-  )
+// Read the shared setting for each visit, rather than freezing the mode at build time.
+export const dynamic = 'force-dynamic'
+
+export default async function Home() {
+  const settings = await getSiteSettings().catch(() => {
+    console.error(
+      'Website settings unavailable; showing the original planning site.',
+    )
+    return defaultSiteSettings
+  })
+  return <Website settings={settings} />
 }

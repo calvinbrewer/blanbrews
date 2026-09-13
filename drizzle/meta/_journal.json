@@ -15,6 +15,13 @@
       "when": 1779472204089,
       "tag": "0001_lethal_whistler",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789318171406,
+      "tag": "0002_website_settings",
+      "breakpoints": true
     }
   ]
 }

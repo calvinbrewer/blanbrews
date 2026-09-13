@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Car, Train, MapPin, Plane, BookOpen, Compass } from 'lucide-react'
 import Link from 'next/link'
 
-export function Travel() {
+export function Travel({ showFaqLink = true }: { showFaqLink?: boolean }) {
   const scrollToFAQ = () => {
     const element = document.getElementById('faq')
     if (element) {
@@ -276,12 +276,14 @@ export function Travel() {
                 <br />
                 Città della Pieve, IT 06062
               </p>
+              {showFaqLink && (
               <button
                 onClick={scrollToFAQ}
                 className="text-sm text-accent hover:text-accent/80 underline transition-colors mt-4"
               >
                 View more travel details in our FAQ
               </button>
+              )}
             </div>
           </CardContent>
         </Card>

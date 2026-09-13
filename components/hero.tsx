@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { taxiHref } from '@/lib/wedding'
 
 export function Hero() {
   const scrollToRSVP = () => {
@@ -57,7 +58,7 @@ export function Hero() {
             variant="secondary"
             className="px-12 h-14 text-base font-medium tracking-wider shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <a href="tel:+39057820178">
+            <a href={taxiHref}>
               <span aria-hidden="true">📞</span>
               Call Local Taxi
             </a>

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { WebsiteSettings } from '@/components/website-settings'
 import { Label } from '@/components/ui/label'
 import type { Guest } from '@/lib/types'
 import {
@@ -315,18 +316,18 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background p-8">
+    <div className="min-h-screen bg-background p-4 sm:p-8">
       <div className="container mx-auto max-w-7xl">
-        <div className="mb-8 flex items-center justify-between">
+        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h1 className="text-4xl font-bold mb-2">Wedding RSVP Admin</h1>
+            <h1 className="text-4xl font-bold mb-2">Wedding Admin</h1>
             <p className="text-muted-foreground">
-              Manage your guest list and RSVPs
+              Manage your website, guest list, and RSVPs
             </p>
           </div>
 
           {/* View Toggle */}
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Button
               variant={!showPlusOnesView ? 'default' : 'outline'}
               onClick={() => setShowPlusOnesView(false)}
@@ -343,6 +344,8 @@ export default function AdminPage() {
             </Button>
           </div>
         </div>
+
+        <WebsiteSettings />
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
@@ -407,7 +410,7 @@ export default function AdminPage() {
         {/* Actions */}
         {!showPlusOnesView && (
           <>
-            <div className="flex gap-3 mb-6">
+            <div className="flex flex-wrap gap-3 mb-6">
               <Button onClick={() => setShowAddModal(true)}>
                 <Plus className="w-4 h-4 mr-2" />
                 Add Guest

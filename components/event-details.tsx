@@ -1,62 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Calendar, MapPin, Clock, Shirt } from 'lucide-react'
 import Link from 'next/link'
+import { weddingEvents } from '@/lib/wedding'
 
 export function EventDetails() {
-  const events = [
-    {
-      title: 'Pizza Party',
-      date: 'October 1, 2026',
-      time: '5:30 PM',
-      location: 'Borgo Siliano',
-      dressCode: 'Dressy-casual',
-      description: 'A casual pizza party to kick off our wedding weekend.',
-    },
-    {
-      title: 'Wedding Ceremony & Reception',
-      date: 'October 2, 2026',
-      time: '3:00 PM',
-      location: 'Borgo Siliano',
-      dressCode: 'Cocktail Attire (jacket and tie encouraged)',
-      description:
-        'An intimate ceremony surrounded by the rolling hills and vineyards of Tuscany, followed by dinner and dancing.',
-      featured: true,
-    },
-    {
-      title: 'After Party',
-      date: 'October 2, 2026',
-      time: '11:00 PM',
-      location: 'Borgo Siliano',
-      dressCode: 'Casual',
-      description: 'An after party to continue the shenanigans.',
-    },
-    {
-      title: 'Saturday Brunch',
-      date: 'October 3, 2026',
-      time: '10:00 AM',
-      location: 'Borgo Siliano',
-      dressCode:
-        'Relaxed (we can almost promise you the bride will be in sweatpants)',
-      description: 'A relaxed brunch with a little hair of the dog.',
-    },
-    {
-      title: 'Farewell Dinner',
-      date: 'October 3, 2026',
-      time: '5:30 PM',
-      location: 'Borgo Siliano',
-      dressCode: 'Dressy-casual (did someone say linens?!)',
-      description: 'A special farewell dinner in the vineyards.',
-    },
-    {
-      title: 'Departures',
-      date: 'October 4, 2026',
-      time: '10:00 AM',
-      location: 'Home',
-      dressCode: null,
-      description:
-        'Safe travels home! We hope you had an unforgettable time celebrating with us.',
-    },
-  ]
+
 
   return (
     <section id="events" className="py-24 px-4 bg-muted/30">
@@ -82,7 +30,7 @@ export function EventDetails() {
 
         {/* Events Grid */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {events.map((event, index) => (
+          {weddingEvents.map((event, index) => (
             <Card
               key={index}
               className={`group bg-card border hover:shadow-xl transition-all duration-300 overflow-hidden ${
