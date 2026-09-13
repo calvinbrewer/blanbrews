@@ -111,18 +111,19 @@ export function Accommodation() {
               <div className="pt-4 border-t border-border/30 mt-auto">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">Transportation:</strong>{' '}
-                  Guests are responsible for getting themselves to the wedding
-                  events. To arrange a local taxi, call{' '}
+                  Guests are responsible for getting themselves to all wedding
+                  events, and home from the brunch. A complimentary return shuttle
+                  will be provided after evening events. To book a local taxi,
+                  call{' '}
                   <a
                     href="tel:+39057820178"
                     className="underline text-blue-400 whitespace-nowrap"
                   >
                     +39 0578 20178
                   </a>
-                  . We recommend phoning in advance as they operate on true
-                  &quot;Italian time&quot;. A complimentary return shuttle will be
-                  available after evening events; taxis should be arranged
-                  independently after brunch.
+                  . We recommend calling ahead, as service runs on &quot;Italian
+                  time.&quot; If you prefer to drive, complimentary onsite parking
+                  is available, and cars may be left overnight.
                 </p>
               </div>
             </CardContent>
