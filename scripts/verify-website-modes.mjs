@@ -155,9 +155,11 @@ assert.deepEqual(sectionIds(html), [
 assert(html.includes('tel:+39057820178'))
 assert(html.includes('cars may be left overnight'))
 assert(
-  html.includes('3:00 PM') &&
-    html.includes('11:00 PM') &&
-    html.includes('10:00 AM'),
+  html.includes('6:00 PM') &&
+    html.includes('4:00 PM') &&
+    html.includes('Midnight (into Saturday)') &&
+    html.includes('1:00 PM') &&
+    html.includes('7:00 PM'),
 )
 assert(!html.includes('href="#rsvp"'))
 assert(!html.includes('View more travel details in our FAQ'))

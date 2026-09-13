@@ -87,9 +87,10 @@ export function WeekendHero() {
             </p>
           </div>
           <div>
-            <p className="text-white/85">Our home for the weekend</p>
+            <p className="text-white/85">Evening festivities · Saturday, Oct 3</p>
             <p className="mt-1 font-medium">
-              Borgo Siliano · Città della Pieve
+              Farewell dinner at{' '}
+              {weddingEvents.find((event) => event.title === 'Farewell Dinner')?.time}
             </p>
           </div>
         </div>
@@ -131,7 +132,7 @@ export function WeekendSchedule() {
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 text-center">
           <p className="mb-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Four days together
+            Three days together
           </p>
           <h2 className="font-serif text-4xl font-light sm:text-5xl">
             The weekend, at a glance

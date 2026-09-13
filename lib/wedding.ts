@@ -17,7 +17,7 @@ export const weddingEvents: WeddingEvent[] = [
   {
     title: 'Pizza Party',
     date: 'October 1, 2026',
-    time: '5:30 PM',
+    time: '6:00 PM',
     location: 'Borgo Siliano',
     dressCode: 'Dressy-casual',
     description: 'A casual pizza party to kick off our wedding weekend.',
@@ -25,7 +25,7 @@ export const weddingEvents: WeddingEvent[] = [
   {
     title: 'Wedding Ceremony & Reception',
     date: 'October 2, 2026',
-    time: '3:00 PM',
+    time: '4:00 PM',
     location: 'Borgo Siliano',
     dressCode: 'Cocktail Attire (jacket and tie encouraged)',
     description:
@@ -35,15 +35,16 @@ export const weddingEvents: WeddingEvent[] = [
   {
     title: 'After Party',
     date: 'October 2, 2026',
-    time: '11:00 PM',
+    time: 'Midnight (into Saturday)',
     location: 'Borgo Siliano',
-    dressCode: 'Casual',
+    dressCode:
+      'Casual (feel free to stay in your wedding attire or change into something comfortable)',
     description: 'An after party to continue the shenanigans.',
   },
   {
     title: 'Saturday Brunch',
     date: 'October 3, 2026',
-    time: '10:00 AM',
+    time: '1:00 PM',
     location: 'Borgo Siliano',
     dressCode:
       'Relaxed (we can almost promise you the bride will be in sweatpants)',
@@ -52,7 +53,7 @@ export const weddingEvents: WeddingEvent[] = [
   {
     title: 'Farewell Dinner',
     date: 'October 3, 2026',
-    time: '5:30 PM',
+    time: '7:00 PM',
     location: 'Borgo Siliano',
     dressCode: 'Dressy-casual (did someone say linens?!)',
     description: 'A special farewell dinner in the vineyards.',
