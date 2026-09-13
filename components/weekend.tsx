@@ -11,7 +11,16 @@ import {
 
 export function WeekendHero() {
   return (
-    <section className="relative overflow-hidden bg-[#f6f3eb] px-4 pb-12 pt-28 md:pb-16 md:pt-32">
+    <section className="relative overflow-hidden bg-[#414f3e] px-4 pb-12 pt-28 text-white md:pb-16 md:pt-32">
+      <Image
+        src="/cj-tori-hero-4.png"
+        alt="Tori and CJ with their dog in the mountains"
+        fill
+        sizes="100vw"
+        priority
+        className="object-cover object-[center_55%]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/50 to-black/70" />
       <div className="relative mx-auto max-w-5xl text-center">
         <Image
           src="/apple-icon.png"
@@ -19,18 +28,18 @@ export function WeekendHero() {
           width={64}
           height={64}
           priority
-          className="mx-auto mb-5 mix-blend-multiply"
+          className="mx-auto mb-5 rounded-full bg-white/95 p-1"
         />
-        <p className="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
+        <p className="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-white/85">
           October 1–4, 2026 · Italy
         </p>
         <h1 className="font-serif text-6xl font-light tracking-tight sm:text-8xl">
           Tori & CJ
         </h1>
-        <p className="mt-5 font-serif text-2xl text-[#566048] sm:text-3xl">
+        <p className="mt-5 font-serif text-2xl text-white/95 sm:text-3xl">
           Let’s make a weekend of it.
         </p>
-        <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">
+        <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-white/85">
           Everything you need for our wedding weekend at Borgo Siliano: the
           schedule, travel details, and a few places to explore.
         </p>
@@ -48,7 +57,7 @@ export function WeekendHero() {
             asChild
             size="lg"
             variant="outline"
-            className="h-14 border-[#414f3e]/25 bg-transparent"
+            className="h-14 border-white/50 bg-black/20 text-white hover:border-white/70 hover:bg-black/35"
           >
             <a href={taxiHref}>
               <Phone aria-hidden="true" /> Call Local Taxi
@@ -64,21 +73,21 @@ export function WeekendHero() {
           <MapPin className="h-4 w-4" aria-hidden="true" /> Directions to Borgo
           Siliano <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </a>
-        <div className="mx-auto mt-10 grid max-w-3xl gap-5 border-t border-[#414f3e]/15 pt-6 text-sm sm:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-3xl gap-5 border-t border-white/30 pt-6 text-sm sm:grid-cols-3">
           <div>
-            <p className="text-muted-foreground">First up · Thursday, Oct 1</p>
+            <p className="text-white/85">First up · Thursday, Oct 1</p>
             <p className="mt-1 font-medium">
               Pizza party at {weddingEvents[0].time}
             </p>
           </div>
           <div>
-            <p className="text-muted-foreground">The big day · Friday, Oct 2</p>
+            <p className="text-white/85">The big day · Friday, Oct 2</p>
             <p className="mt-1 font-medium">
               Ceremony at {weddingEvents.find((event) => event.featured)?.time}
             </p>
           </div>
           <div>
-            <p className="text-muted-foreground">Our home for the weekend</p>
+            <p className="text-white/85">Our home for the weekend</p>
             <p className="mt-1 font-medium">
               Borgo Siliano · Città della Pieve
             </p>
