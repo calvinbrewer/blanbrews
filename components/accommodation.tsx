@@ -112,8 +112,15 @@ export function Accommodation() {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">Transportation:</strong>{' '}
                   A local taxi service will be provided for guests staying in
-                  Città della Pieve to reach the venue. A complimentary return
-                  shuttle will be available after evening events; taxis should
+                  Città della Pieve to reach the venue. To arrange a taxi, call{' '}
+                  <a
+                    href="tel:+39057820178"
+                    className="underline text-blue-400 whitespace-nowrap"
+                  >
+                    +39 0578 20178
+                  </a>
+                  . A complimentary return shuttle will be available after
+                  evening events; taxis should
                   be arranged independently after brunch.
                 </p>
               </div>
