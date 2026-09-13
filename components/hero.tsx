@@ -51,6 +51,17 @@ export function Hero() {
           >
             RSVP
           </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="secondary"
+            className="px-12 h-14 text-base font-medium tracking-wider shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <a href="tel:+39057820178">
+              <span aria-hidden="true">📞</span>
+              Call Local Taxi
+            </a>
+          </Button>
         </div>
       </div>
 
